@@ -1,0 +1,14 @@
+{
+    "template": "mau15.html",
+    "data": {
+        "seller": {
+            "name": "Cong ty ban hang",
+            "taxcode": "13213123123"
+        },
+        "buyer": {
+            "company_name": "VNPAY",
+            "name": "Nguyen quang truong",
+            "address": "22 Lang ha"
+        }
+    }
+}
