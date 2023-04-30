@@ -2,6 +2,7 @@ package main
 
 type ExportRequest struct {
 	Template string                 `json:"template"`
+	FileName string                 `json:"file_name"`
 	Data     map[string]interface{} `json:"data"`
 }
 

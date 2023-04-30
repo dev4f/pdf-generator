@@ -1,0 +1,60 @@
+openapi: 3.0.3
+info:
+  title: Pdf exporter
+  description: Pdf exporter
+  version: 1.0.0
+servers:
+  - url: 'https://localhost:8888'
+paths:
+  /templates:
+    post:
+      summary: Create a template
+      operationId: createTemplate
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /export:
+    post:
+      summary: Export a pdf
+      operationId: exportPdf
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: string
+                  description: Template name
+                file_name:
+                  type: string
+                  description: Exported file name
+                data:
+                  type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error

@@ -14,8 +14,8 @@ RUN set -x && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -
 
 RUN apt update && apt install libxrender1 libfontconfig1 libxext6 -y
 
-ENV PORT 8888
-ENV HOST 0.0.0.0
+ENV SERVER_PORT 8888
+ENV SERVER_HOST 0.0.0.0
 
 COPY --from=builder /app/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 COPY --from=builder /app/templates/. /app/templates/
