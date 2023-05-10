@@ -42,6 +42,9 @@ func main() {
 		if err != nil {
 			return nil, err
 		}
+		if tplString == "" {
+			return nil, fmt.Errorf("template %s not found", key.(string))
+		}
 		tpl, err := template.New(key.(string)).Parse(tplString)
 		if err != nil {
 			return nil, err
