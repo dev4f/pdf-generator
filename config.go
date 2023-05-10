@@ -1,5 +1,7 @@
 package main
 
+import "golang.org/x/text/unicode/norm"
+
 type Server struct {
 	Host string `mapstructure:"host"`
 	Port string `mapstructure:"port"`
@@ -26,8 +28,12 @@ type Storage struct {
 	Minio Minio       `mapstructure:"minio"`
 }
 
+type Template struct {
+	NormalizationForm *norm.Form `mapstructure:"normalization_form"`
+}
+
 type Config struct {
-	Server  Server  `mapstructure:"server"`
-	Storage Storage `mapstructure:"storage"`
-	Test    string  `mapstructure:"TEST"`
+	Server   Server   `mapstructure:"server"`
+	Storage  Storage  `mapstructure:"storage"`
+	Template Template `mapstructure:"template"`
 }

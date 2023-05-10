@@ -21,14 +21,12 @@ var templateManager TemplateManager
 
 var templates gcache.Cache
 
+var config *Config
+
 func main() {
 
-	config, err := loadConfig()
-	if err != nil {
-		log.Printf("error while load config: %v", err)
-		return
-	}
-
+	var err error
+	config, err = loadConfig()
 	addr := fmt.Sprintf("%s:%s", config.Server.Host, config.Server.Port)
 	log.Printf("Listen address: %s", addr)
 
@@ -229,8 +227,15 @@ func exportPdf(ctx *fasthttp.RequestCtx) {
 		return
 	}
 
+	var normalized []byte
+	if config.Template.NormalizationForm != nil {
+		normalized = config.Template.NormalizationForm.Bytes(val.Bytes())
+	} else {
+		normalized = val.Bytes()
+	}
+
 	// generate pdf
-	pdfdata, err := genPdfFromHtml(val.Bytes())
+	pdfdata, err := genPdfFromHtml(normalized)
 	if err != nil {
 		log.Printf("[%s] error while generate pdf: %v", getTraceId(ctx), err)
 		ctx.Error("", fasthttp.StatusInternalServerError)

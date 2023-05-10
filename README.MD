@@ -20,6 +20,7 @@ docker run -rm -p 8888:8888 pdf-exporter
   - `STORAGE_MINIO_SECRET_KEY`: Minio secret key
   - `STORAGE_MINIO_BUCKET_NAME`: Minio bucket name
   - `STORAGE_MINIO_PATH`: Path to store templates in minio
+  - `TEMPLATE_NORMALIZATION_FORM`: Normalization form to normalize unicode characters, 0:NFC, 1:NFD, 2:NFKC, 3:NFKD , see [Normalization Form](https://go.dev/blog/normalization)
 ### How to export pdf
 - Send a POST request to http://localhost:8888/export with body
 ```
