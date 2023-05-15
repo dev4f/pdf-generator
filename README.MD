@@ -34,4 +34,4 @@ docker run -rm -p 8888:8888 pdf-exporter
 
 ### How to add new template
 - Add new template to `templates` folder
-- Add new template by send a POST request to http://localhost:8888/templates see api.yaml to know more
+- Add new template by send a POST request to http://localhost:8888/templates see api.yaml and test/test.sh to get more details
